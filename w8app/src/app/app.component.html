@@ -1,0 +1,88 @@
+<div class="form-group mx-sm-3 mb-2">
+
+  
+  <label for="item">Maker</label>
+  <input type="text" class="form-control" [(ngModel)]="maker" id="item" />
+
+  <label for="item">Model</label>
+  <input type="text" class="form-control" [(ngModel)]="model" id="item" />
+
+  <div>
+      Body Type
+      <select [(ngModel)]="bodytype" type="text" class="form-control">
+        <option selected value = "Bus">Bus</option>
+        <option value = "Coupe">Coupe</option>
+        <option value = "Hatch">Hatch</option>
+        <option value = "Sedan">Sedan</option>
+        <option value = "SUV">SUV</option>
+        <option value = "Van">Van</option>
+        <option value = "Ute">Ute</option>
+      </select>
+  </div>
+
+  <label for="item">Year</label>
+  <input type="number" class="form-control" [(ngModel)]="year" id="item" />
+
+
+
+
+
+  <div class="form-row">
+
+    <div class="form-group col-md-6">
+      <label for="item">Address</label>
+      <input type="text" class="form-control" [(ngModel)]="address" id="item" />
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="inputState">State</label>
+      <select [(ngModel)]="state" type="text" class="form-control">
+        <option selected value = "ACT">ACT</option>
+        <option value = "NSW">NSW</option>
+        <option value = "NT">NT</option>
+        <option value = "QLD">QLD</option>
+        <option value = "SA">SA</option>
+        <option value = "TAS">TAS</option>
+        <option value = "WA">WA</option>
+        <option value = "VIC">VIC</option>
+      </select>
+    </div>
+
+    <div class="form-group col-md-2">
+      <label for="item">Postcode</label>
+      <input type="text" class="form-control" [(ngModel)]="postcode" id="item" />
+    </div>
+  </div>
+
+</div>
+
+<button class="btn btn-primary" (click)="newCar()">Add Car <span class="badge badge-light">{{db.length}}</span></button>
+<button class="btn btn-info" (click)="deleteOldCars()" [disabled]="numOldCars === 0">Delete Old Cars <span class="badge badge-light">{{numOldCars}}</span> </button>
+
+<p></p>
+
+<table class="table table-hover ">
+  <thead class="thead-dark">
+    <tr>
+      <th> # </th>
+      <th> Maker </th>
+      <th> Model </th>
+      <th> Year </th>
+      <th> Body Type </th>
+      <th> Address </th>
+      <th> Del? </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let item of db; let i = index">
+      <td>{{i+1}}</td>
+      <td>{{item.maker}}</td>
+      <td>{{item.model}}</td>
+      <td>{{item.year}}</td>
+      <td>{{item.bodytype}}</td>
+      <td>{{item.address + ',' + item.state + ',' + item.postcode}}</td>
+      <td> <button class="btn btn-danger" (click)="deleteCarById(item.id)">X</button></td>
+    </tr>
+  </tbody>
+</table>
